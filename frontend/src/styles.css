@@ -1,0 +1,407 @@
+:root {
+  --纸: #e6edf4;
+  --纸深: #d5e0ea;
+  --墨: #0b2740;
+  --淡: #4a6278;
+  --线: #9bb0c4;
+  --线弱: rgba(11, 39, 64, 0.12);
+  --信: #0f8f86;
+  --信亮: #14b8a6;
+  --信底: rgba(15, 143, 134, 0.12);
+  --警: #c45c2a;
+  --警底: rgba(196, 92, 42, 0.12);
+  --通: #1f7a4c;
+  --通底: rgba(31, 122, 76, 0.12);
+  --败: #b33a3a;
+  --败底: rgba(179, 58, 58, 0.12);
+  --块: rgba(255, 255, 255, 0.72);
+  --侧: #0b2740;
+  --侧字: #c9d7e6;
+  --侧淡: #7f97ad;
+  --侧亮: #14b8a6;
+  font-family: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+* { box-sizing: border-box }
+html, body, #root { min-height: 100% }
+body {
+  margin: 0;
+  color: var(--墨);
+  background-color: var(--纸);
+  background-image:
+    linear-gradient(90deg, rgba(11, 39, 64, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(11, 39, 64, 0.04) 1px, transparent 1px),
+    radial-gradient(900px 520px at 85% -10%, rgba(20, 184, 166, 0.18), transparent 55%),
+    radial-gradient(700px 480px at -5% 110%, rgba(11, 39, 64, 0.1), transparent 50%);
+  background-size: 28px 28px, 28px 28px, auto, auto;
+}
+
+.壳 {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+}
+
+.侧轨 {
+  background: linear-gradient(180deg, #0b2740 0%, #123552 55%, #0e2f45 100%);
+  color: var(--侧字);
+  padding: 1.4rem 1rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: 3px solid var(--侧亮);
+}
+.侧标 {
+  padding: 0 0.35rem;
+}
+.侧英 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: var(--侧亮);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+.侧名 {
+  font-family: Syne, "IBM Plex Sans", sans-serif;
+  font-weight: 800;
+  font-size: 1.85rem;
+  letter-spacing: 0.18em;
+  color: #f3f8fc;
+  line-height: 1.1;
+  animation: brand-in 0.7s ease-out both;
+}
+.侧骨 {
+  margin-top: 0.55rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--侧淡);
+}
+.侧导 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  overflow: auto;
+  padding-right: 0.15rem;
+}
+.侧导 a {
+  position: relative;
+  color: var(--侧淡);
+  text-decoration: none;
+  padding: 0.55rem 0.7rem 0.55rem 1.05rem;
+  font-size: 0.88rem;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.侧导 a::before {
+  content: "";
+  position: absolute;
+  left: 0.35rem;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 1px;
+  background: transparent;
+  transform: translateY(-50%) rotate(45deg);
+}
+.侧导 a:hover { color: #e8f1f8; background: rgba(255,255,255,0.04) }
+.侧导 a.亮 {
+  color: #fff;
+  border-left-color: var(--侧亮);
+  background: rgba(20, 184, 166, 0.12);
+}
+.侧导 a.亮::before {
+  background: var(--侧亮);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+  animation: tick-pulse 1.6s ease-in-out infinite;
+}
+.侧导 a.次链 { font-size: 0.78rem; opacity: 0.85; margin-top: 0.6rem }
+.侧脚 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  color: var(--侧淡);
+  letter-spacing: 0.08em;
+  padding: 0 0.35rem;
+}
+
+.主壳 { min-width: 0; display: flex; flex-direction: column }
+.主 {
+  padding: 1.6rem 1.8rem 2.4rem;
+  max-width: 1080px;
+  width: 100%;
+}
+
+.题 {
+  font-family: Syne, "IBM Plex Sans", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.04em;
+}
+.述 {
+  color: var(--淡);
+  margin: 0 0 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  max-width: 40rem;
+}
+
+.英雄 {
+  min-height: calc(100vh - 3.2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: 0.5rem 0 2rem;
+}
+.英雄英 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  color: var(--信);
+  text-transform: uppercase;
+}
+.英雄名 {
+  font-family: Syne, "IBM Plex Sans", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.8rem, 7vw, 4.4rem);
+  letter-spacing: 0.22em;
+  line-height: 1;
+  margin: 0;
+  color: var(--墨);
+  animation: brand-in 0.75s ease-out both;
+}
+.英雄骨 {
+  font-size: 1.02rem;
+  color: var(--淡);
+  max-width: 34rem;
+  line-height: 1.55;
+  margin: 0;
+  border-left: 3px solid var(--信);
+  padding-left: 0.9rem;
+}
+.轨刻 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.1rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--淡);
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--线弱);
+  border-bottom: 1px solid var(--线弱);
+}
+.轨刻 b {
+  color: var(--墨);
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  margin-right: 0.25rem;
+}
+.轨刻 i {
+  font-style: normal;
+  color: var(--信);
+  margin-right: 0.15rem;
+}
+
+.行 { display: flex; gap: 0.55rem; flex-wrap: wrap; margin-bottom: 0.95rem; align-items: center }
+button {
+  background: var(--墨);
+  color: #f4f9fc;
+  border: 0;
+  padding: 0.55rem 1.05rem;
+  border-radius: 2px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform 0.12s ease, background 0.12s;
+}
+button:hover { background: #143b5c }
+button:active { transform: translateY(1px) }
+button.次 {
+  background: transparent;
+  border: 1px solid var(--线);
+  color: var(--墨);
+  font-weight: 500;
+}
+button.次:hover { border-color: var(--墨); background: rgba(255,255,255,0.5) }
+button.信 {
+  background: var(--信);
+  color: #f4fffc;
+}
+button.信:hover { background: #0c7a73 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  background: var(--块);
+  border: 1px solid var(--线弱);
+  backdrop-filter: blur(4px);
+}
+th, td {
+  border-bottom: 1px solid var(--线弱);
+  padding: 0.55rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  color: var(--淡);
+  font-weight: 500;
+  background: rgba(11, 39, 64, 0.04);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+td code, .mono {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+}
+.讯 {
+  margin: 0.5rem 0;
+  color: var(--淡);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+}
+.空态 {
+  padding: 1.5rem;
+  border: 1px dashed var(--线);
+  color: var(--淡);
+  text-align: center;
+  margin: 0.5rem 0 1rem;
+  background: rgba(255,255,255,0.45);
+}
+.提示条 {
+  background: var(--信底);
+  border-left: 3px solid var(--信);
+  color: var(--墨);
+  padding: 0.75rem 0.95rem;
+  margin-bottom: 1rem;
+  font-size: 0.88rem;
+}
+.提示条 a { color: var(--信); font-weight: 600 }
+.徽章 {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-family: "IBM Plex Mono", monospace;
+}
+.徽章.通 { background: var(--通底); color: var(--通) }
+.徽章.败 { background: var(--败底); color: var(--败) }
+.徽章.信 { background: var(--信底); color: var(--信) }
+
+@keyframes brand-in {
+  from { opacity: 0; letter-spacing: 0.4em; transform: translateY(8px) }
+  to { opacity: 1; letter-spacing: 0.22em; transform: translateY(0) }
+}
+@keyframes tick-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15) }
+  50% { box-shadow: 0 0 0 5px rgba(20, 184, 166, 0.28) }
+}
+
+@media (max-width: 860px) {
+  .壳 { grid-template-columns: 1fr }
+  .侧轨 {
+    position: relative;
+    height: auto;
+    border-right: 0;
+    border-bottom: 3px solid var(--侧亮);
+  }
+  .侧导 { flex-direction: row; flex-wrap: wrap; gap: 0.2rem }
+  .侧导 a { border-left: 0; border-bottom: 2px solid transparent; padding-left: 0.7rem }
+  .侧导 a.亮 { border-bottom-color: var(--侧亮) }
+  .侧导 a::before { display: none }
+  .英雄 { min-height: auto; padding-top: 0.4rem }
+  .英雄名 { letter-spacing: 0.12em }
+}
+
+/* ===== 金丝雀影子道：左右分栏 / 分路徽标 / 表单 ===== */
+.雀区 {
+  margin: 14px 0 22px;
+  padding: 16px 18px;
+  border: 1px solid var(--线弱);
+  border-radius: 6px;
+  background: var(--块);
+  backdrop-filter: blur(4px);
+}
+.雀题行 { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.雀题 { font-size: 1.06rem; margin: 0 0 10px; letter-spacing: 0.04em; }
+.雀分栏 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; align-items: start; }
+.雀栏 {
+  border: 1px solid var(--线弱);
+  border-top-width: 3px;
+  border-radius: 5px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.62);
+  min-width: 0;
+}
+.影栏 { border-top-color: var(--信); }
+.正栏 { border-top-color: var(--墨); }
+.雀栏头 { display: flex; align-items: center; gap: 0.55rem; }
+.雀栏头 h3 { margin: 0; font-size: 0.98rem; }
+.道标 {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.道标.影 { background: var(--信底); color: var(--信); border: 1px solid rgba(15, 143, 134, 0.35); }
+.道标.正 { background: rgba(11, 39, 64, 0.08); color: var(--墨); border: 1px solid var(--线); }
+.雀票号 { margin: 0.55rem 0 0.25rem; font-size: 0.85rem; color: var(--淡); word-break: break-all; }
+.雀票号 code { font-family: "IBM Plex Mono", ui-monospace, monospace; color: var(--墨); font-weight: 600; }
+.雀计数 { font-size: 0.82rem; color: var(--淡); margin-bottom: 0.55rem; }
+.雀计数 b { color: var(--墨); font-size: 0.95rem; }
+.雀注 { opacity: 0.82; }
+.雀证单 { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.雀证 {
+  display: flex; align-items: center; gap: 0.55rem;
+  font-size: 0.8rem; padding: 0.42rem 0.55rem;
+  border: 1px solid var(--线弱); border-radius: 3px; background: #fff;
+}
+.雀证.通 { border-left: 3px solid var(--通); }
+.雀证.偏 { border-left: 3px solid var(--警); }
+.雀证号文 { font-family: "IBM Plex Mono", ui-monospace, monospace; word-break: break-all; flex: 1; min-width: 0; }
+.雀边 { color: var(--淡); font-size: 0.74rem; margin-left: auto; white-space: nowrap; }
+.雀空 {
+  color: var(--淡); font-size: 0.82rem; line-height: 1.5;
+  padding: 0.65rem 0.7rem; border: 1px dashed var(--线);
+  border-radius: 4px; background: rgba(255, 255, 255, 0.4);
+}
+.雀操作 {
+  display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: flex-end;
+  padding: 0.7rem; margin: 0.4rem 0 0.6rem;
+  border: 1px dashed var(--线); border-radius: 5px;
+}
+.雀操作 label, .雀表单 label {
+  display: flex; flex-direction: column; gap: 0.22rem;
+  font-size: 0.74rem; color: var(--淡); font-weight: 600; letter-spacing: 0.03em;
+}
+.雀操作 input, .雀操作 select, .雀表单 input, .雀表单 select, .雀区 select, .行 select {
+  padding: 0.46rem 0.55rem;
+  border: 1px solid var(--线);
+  border-radius: 3px;
+  font: inherit;
+  font-size: 0.85rem;
+  background: #fff;
+  color: var(--墨);
+  min-width: 9rem;
+}
+.雀表单 {
+  display: flex; gap: 0.7rem; flex-wrap: wrap; align-items: flex-end;
+  background: var(--块); border: 1px solid var(--线弱);
+  padding: 0.75rem 0.85rem; border-radius: 5px; margin-bottom: 0.95rem;
+}
+.讯.错 { color: var(--败); white-space: pre-wrap; font-family: inherit; }
+button.警 { background: var(--警); color: #fff; }
+button.警:hover { background: #a84d22; }
+
+@media (max-width: 860px) {
+  .雀分栏 { grid-template-columns: 1fr; }
+}
